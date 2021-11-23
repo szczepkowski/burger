@@ -1,0 +1,21 @@
+mongodb:
+  max:
+    pool:
+      size: 300
+
+spring:
+  data:
+    mongodb:
+      database:  goreit
+      authentication-database: admin
+      host: localhost
+      port: 27017
+      password: root
+      username: root
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 20MB
+    application:
+      name: Goreit
