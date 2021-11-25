@@ -2,13 +2,16 @@ package pl.goreit.burger.domain.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document
 public class Profile {
 
     @Id
     private String id;
+    @Field
     private String login;
+    @Field
     private Cart cart;
 
     public Profile(String id, String login, Cart cart) {
@@ -16,6 +19,10 @@ public class Profile {
         this.login = login;
         this.cart = cart;
     }
+
+    public Profile() {
+    }
+
 
     public String getId() {
         return id;

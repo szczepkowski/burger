@@ -1,16 +1,18 @@
 package pl.goreit.burger.domain.api.view;
 
-import pl.goreit.burger.domain.model.Cart;
-
 public class ProfileView {
 
     private String login;
     private CartView cartView;
 
+    public ProfileView() {
+    }
+
     public ProfileView(String login, CartView cartView) {
         this.login = login;
         this.cartView = cartView;
     }
+
 
     public String getLogin() {
         return login;
