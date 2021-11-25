@@ -4,6 +4,7 @@ import pl.goreit.burger.domain.api.exceptions.EntityNotFoundException;
 import pl.goreit.burger.domain.api.exceptions.WrongValueException;
 import pl.goreit.burger.domain.api.view.BurgerView;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 public class Cart {
 
     private List<CartLine> cartLines;
+    private BigDecimal cartCost = BigDecimal.ZERO;
 
 
     public Cart(List<CartLine> cartLines) {
@@ -20,7 +22,11 @@ public class Cart {
 
     public boolean addCartLine(BurgerView burgerView, Integer amount) {
         int size = this.cartLines.size() + 1;
-        return this.cartLines.add(new CartLine(size - 1, burgerView, amount));
+        CartLine cartLine = new CartLine(size - 1, burgerView, amount);
+        this.cartLines.add(cartLine);
+        this.recalculatCosts();
+        return true;
+
     }
 
     public boolean editCartLine(Integer no, Integer amount) throws EntityNotFoundException, WrongValueException {
@@ -36,7 +42,7 @@ public class Cart {
 
         cartLine.setAmount(amount);
 
-
+        this.recalculatCosts();
         return true;
     }
 
@@ -52,14 +58,15 @@ public class Cart {
         this.cartLines = this.cartLines.stream().filter(cartLine -> !Objects.equals(cartLine.getNo(), no))
                 .collect(Collectors.toList());
 
+        this.recalculatCosts();
         return true;
     }
 
     public boolean reset() {
-         this.cartLines.clear();
-         return true;
+        this.cartLines.clear();
+        this.recalculatCosts();
+        return true;
     }
-
 
     public List<CartLine> getCartLines() {
         return cartLines;
@@ -69,5 +76,15 @@ public class Cart {
         this.cartLines = cartLines;
     }
 
+    public void recalculatCosts() {
+        this.cartCost = BigDecimal.ZERO;
 
+        this.cartLines.forEach(cartLine -> {
+            Integer amount = cartLine.getAmount();
+            BigDecimal price = cartLine.getBurgerView().getPrice();
+            BigDecimal cartLineCost = price.multiply(BigDecimal.valueOf(amount));
+            this.cartCost = this.cartCost.add(cartLineCost);
+
+        });
+    }
 }
