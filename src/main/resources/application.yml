@@ -19,3 +19,5 @@ spring:
       max-request-size: 20MB
     application:
       name: Goreit
+
+spring.data.mongodb.auto-index-creation: true

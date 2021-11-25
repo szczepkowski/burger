@@ -4,8 +4,12 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public class BurgerView {
+
     private String name;
     private BigDecimal price;
+
+    public BurgerView() {
+    }
 
     public BurgerView(String name, BigDecimal price) {
         this.name = name;

@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository
 public interface BurgerRepo extends MongoRepository<Burger, String> {
+
     List<Burger> findAllByStatus(Burger.Status status);
-    Burger findBurgerByName(String name);
+    Burger findBurgerByNameAndStatus(String name, Burger.Status status);
 }

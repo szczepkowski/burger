@@ -1,6 +1,5 @@
 package pl.goreit.burger.domain.model;
 
-
 import pl.goreit.burger.domain.api.view.BurgerView;
 
 public class CartLine {
@@ -13,6 +12,9 @@ public class CartLine {
         No = no;
         this.burgerView = burgerView;
         this.amount = amount;
+    }
+
+    public CartLine() {
     }
 
     public Integer getNo() {

@@ -7,6 +7,10 @@ import java.util.List;
 public class CartView {
     private List<CartLineView> cartLines;
 
+
+    public CartView() {
+    }
+
     public CartView(List<CartLineView> cartLines) {
         this.cartLines = cartLines;
     }
