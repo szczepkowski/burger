@@ -6,8 +6,11 @@ public class CartLineView {
     private BurgerView burgerView;
     private Integer amount;
 
+    public CartLineView() {
+    }
+
     public CartLineView(Integer no, BurgerView burgerView, Integer amount) {
-        No = no;
+        this.No = no;
         this.burgerView = burgerView;
         this.amount = amount;
     }
