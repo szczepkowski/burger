@@ -2,8 +2,6 @@ package pl.goreit.burger.domain.service;
 
 import org.springframework.stereotype.Service;
 import pl.goreit.burger.domain.api.view.BurgerView;
-import pl.goreit.burger.domain.api.view.CartView;
-import pl.goreit.burger.domain.api.view.ProfileView;
 import pl.goreit.burger.domain.model.Cart;
 import pl.goreit.burger.domain.model.Profile;
 import pl.goreit.burger.infrastructure.ProfileRepo;
@@ -12,11 +10,10 @@ import pl.goreit.burger.infrastructure.ProfileRepo;
 public class CartService {
 
     private final ProfileRepo profileRepo;
-    final CartService cartService;
 
-    public CartService(ProfileRepo profileRepo, CartService cartService) {
+    public CartService(ProfileRepo profileRepo ) {
         this.profileRepo = profileRepo;
-        this.cartService = cartService;
+
     }
 
     public boolean addCartLine(String login, BurgerView burgerView, Integer amount) {
