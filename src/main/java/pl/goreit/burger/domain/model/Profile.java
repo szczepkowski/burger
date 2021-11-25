@@ -2,17 +2,19 @@ package pl.goreit.burger.domain.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Document
 public class Profile {
 
     @Id
     private String id;
-    @Field
     private String login;
-    @Field
     private Cart cart;
+    private List<Order> orders = new ArrayList<>();
+
 
     public Profile(String id, String login, Cart cart) {
         this.id = id;
@@ -46,5 +48,17 @@ public class Profile {
 
     public void setCart(Cart cart) {
         this.cart = cart;
+    }
+
+    public void addOrder(Order order) {
+        this.orders.add(order);
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }

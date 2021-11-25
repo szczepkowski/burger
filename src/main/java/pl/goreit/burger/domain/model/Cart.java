@@ -87,4 +87,12 @@ public class Cart {
 
         });
     }
+
+    public BigDecimal getCartCost() {
+        return cartCost;
+    }
+
+    public void setCartCost(BigDecimal cartCost) {
+        this.cartCost = cartCost;
+    }
 }
